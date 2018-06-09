@@ -2,7 +2,7 @@
 
 (Given "^read recipes$"
        (lambda ()
-         (package-build--read-recipes)))
+         (package-recipe-recipes)))
 
 (Given "^capture messages to \\(.+\\)$"
        (lambda (varby)
@@ -11,12 +11,13 @@
 
 (Given "^set \\(.+\\) to archive alist$"
        (lambda (var)
-         (set (intern var) (package-build-archive-alist))))
+         (set (intern var) (package-recipe-recipes))))
 
 (Then "^\\(.+\\) should be empty"
       (lambda (var)
         (let ((varsym (intern var)))
-          (assert (not (eval varsym)) nil "Variable %s is not empty: %s" var (eval varsym)))))
+          (assert (not (eval varsym))
+		  nil "Variable %s is not empty: %s" var (eval varsym)))))
 
 (Given "add \"\\(.+\\)\" to archive alist"
        (lambda (var)
